@@ -4,6 +4,12 @@ import Head from "next/head";
 import Image from "next/image";
 import { useState } from "react";
 
+import Link from "next/link";
+// --- UPDATE THESE LINKS ---
+const CHROME_STORE_LINK =
+  "https://chromewebstore.google.com/detail/youtube-factcheck/ajapllhjmmdfbilfbjpnnpnjhogajmio?hl=en"; // Replace with your actual Chrome Store URL
+const PRIVACY_POLICY_LINK =
+  "https://docs.google.com/document/d/e/2PACX-1vS1nnpAH-MaZ66UzisMPMm8vesErMGoxZiK0mrX-y5nbYr4-zIRwKBCsN67bYVdp4_OygPfnaHXL2uP/pub"; // Replace or link to Chrome Store privacy section
 export default function Home() {
   const [activeTab, setActiveTab] = useState("all");
 
@@ -100,7 +106,7 @@ export default function Home() {
             </ul>
           </nav>
           <a
-            href="https://chrome.google.com/webstore"
+            href={CHROME_STORE_LINK}
             target="_blank"
             rel="noopener noreferrer"
             className="bg-red-600 hover:bg-red-700 text-white px-5 py-2 rounded-md font-medium transition"
@@ -126,7 +132,7 @@ export default function Home() {
               </p>
               <div className="mt-8 flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
                 <a
-                  href="https://chrome.google.com/webstore"
+                  href={CHROME_STORE_LINK}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-center bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-md font-medium text-lg transition"
@@ -144,14 +150,15 @@ export default function Home() {
                     />
                   </svg>
                 </a>
-                <a
-                  href="#how-it-works"
+                <Link
+                  href="/setup-guide"
                   className="flex items-center justify-center bg-white hover:bg-gray-100 text-gray-800 border border-gray-300 px-6 py-3 rounded-md font-medium text-lg transition"
                 >
-                  Learn More
-                </a>
+                  Setup Guide
+                </Link>
               </div>
             </div>
+
             <div className="md:w-1/2 mt-12 md:mt-0">
               <div className="relative rounded-lg shadow-xl overflow-hidden">
                 <Image
@@ -168,10 +175,16 @@ export default function Home() {
       </section>
 
       {/* Features Section */}
-      <section id="features" className="py-16 bg-white">
+      <section
+        id="features"
+        className="py-20 bg-gradient-to-b from-white to-gray-50"
+      >
         <div className="container mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto">
-            <h2 className="text-3xl font-bold text-gray-900">
+            <span className="text-red-600 font-medium uppercase tracking-wider text-sm">
+              Why Choose Us
+            </span>
+            <h2 className="mt-2 text-4xl font-bold text-gray-900 leading-tight">
               Powerful AI Features
             </h2>
             <p className="mt-4 text-xl text-gray-600">
@@ -180,15 +193,15 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="mt-8 mb-8 flex justify-center">
-            <div className="inline-flex rounded-md shadow-sm">
+          <div className="mt-10 mb-12 flex justify-center">
+            <div className="inline-flex rounded-md shadow-sm bg-white p-1">
               <button
                 onClick={() => setActiveTab("all")}
-                className={`px-4 py-2 text-sm font-medium rounded-l-lg ${
+                className={`px-5 py-2.5 text-sm font-medium rounded-lg transition-all duration-200 ${
                   activeTab === "all"
-                    ? "bg-red-600 text-white"
+                    ? "bg-red-600 text-white shadow-md"
                     : "bg-white text-gray-700 hover:bg-gray-50"
-                } border border-gray-300`}
+                }`}
               >
                 All Features
               </button>
@@ -196,13 +209,11 @@ export default function Home() {
                 <button
                   key={feature.id}
                   onClick={() => setActiveTab(feature.id)}
-                  className={`px-4 py-2 text-sm font-medium ${
-                    index === features.length - 1 ? "rounded-r-lg" : ""
-                  } ${
+                  className={`px-5 py-2.5 text-sm font-medium rounded-lg transition-all duration-200 ${
                     activeTab === feature.id
-                      ? "bg-red-600 text-white"
+                      ? "bg-red-600 text-white shadow-md"
                       : "bg-white text-gray-700 hover:bg-gray-50"
-                  } border border-gray-300 border-l-0`}
+                  }`}
                 >
                   {feature.title}
                 </button>
@@ -218,13 +229,37 @@ export default function Home() {
               .map((feature) => (
                 <div
                   key={feature.id}
-                  className="bg-gray-50 rounded-xl p-6 shadow-md hover:shadow-lg transition"
+                  className="bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100"
                 >
-                  <div className="text-3xl mb-4">{feature.icon}</div>
+                  <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-red-100 text-red-600 mb-6">
+                    {feature.icon}
+                  </div>
                   <h3 className="text-xl font-semibold text-gray-900">
                     {feature.title}
                   </h3>
-                  <p className="mt-2 text-gray-600">{feature.description}</p>
+                  <p className="mt-3 text-gray-600 leading-relaxed">
+                    {feature.description}
+                  </p>
+                  <div className="mt-6">
+                    <a
+                      href={`#${feature.id}`}
+                      className="text-red-600 font-medium flex items-center hover:text-red-700 transition-colors"
+                    >
+                      Learn more
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-4 w-4 ml-1"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    </a>
+                  </div>
                 </div>
               ))}
           </div>
@@ -290,101 +325,151 @@ export default function Home() {
                 className="w-full"
               />
             </div>
+            <div className="mt-8 text-center">
+              <Link
+                href="/setup-guide"
+                className="inline-flex items-center justify-center bg-white hover:bg-gray-100 text-gray-800 border border-gray-300 px-6 py-3 rounded-md font-medium text-lg transition"
+              >
+                View Detailed Setup Guide
+                <svg
+                  className="ml-2 w-5 h-5"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </Link>
+            </div>
           </div>
         </div>
       </section>
+      {/* Setup Guide Teaser Section */}
 
-      {/* Privacy Section */}
-      <section id="privacy" className="py-16 bg-white">
+      <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl font-bold text-gray-900 text-center">
-              Privacy & Security
-            </h2>
-            <div className="mt-8 bg-gray-50 rounded-xl p-8 shadow-md">
-              <div className="flex items-start">
-                <div className="flex-shrink-0">
-                  <svg
-                    className="h-6 w-6 text-green-500"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                </div>
-                <div className="ml-3">
-                  <h3 className="text-lg font-medium text-gray-900">
-                    Private and Secure
-                  </h3>
-                  <p className="mt-1 text-gray-600">
-                    All processing happens locally. We don&apos;t collect
-                    personal information or track browsing history.
-                  </p>
+          <div className="max-w-3xl mx-auto bg-gradient-to-r from-red-50 to-amber-50 rounded-xl p-8 shadow-md border border-red-100">
+            <div className="flex flex-col md:flex-row items-center">
+              <div className="md:w-1/3 mb-6 md:mb-0">
+                <div className="text-center">
+                  <div className="inline-flex items-center justify-center w-24 h-24 rounded-full bg-red-100 text-red-600">
+                    <svg
+                      className="w-12 h-12"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                      ></path>
+                    </svg>
+                  </div>
                 </div>
               </div>
 
-              <div className="mt-6 flex items-start">
-                <div className="flex-shrink-0">
-                  <svg
-                    className="h-6 w-6 text-green-500"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                </div>
-                <div className="ml-3">
-                  <h3 className="text-lg font-medium text-gray-900">
-                    Required Permissions
-                  </h3>
-                  <p className="mt-1 text-gray-600">
-                    We only request access to youtube.com and clipboard
-                    permissions to paste your API key.
-                  </p>
-                </div>
-              </div>
+              <div className="md:w-2/3 md:pl-8">
+                <h2 className="text-2xl font-bold text-gray-900">
+                  Need an API Key?
+                </h2>
 
-              <div className="mt-6 flex items-start">
-                <div className="flex-shrink-0">
-                  <svg
-                    className="h-6 w-6 text-green-500"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
+                <p className="mt-2 text-gray-600">
+                  Our detailed setup guide walks you through obtaining a free
+                  Google AI Studio API key and configuring your YouTube AI
+                  Companion in just minutes.
+                </p>
+
+                <div className="mt-6">
+                  <Link
+                    href="/setup-guide"
+                    className="inline-flex items-center bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-md font-medium transition"
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                </div>
-                <div className="ml-3">
-                  <h3 className="text-lg font-medium text-gray-900">
-                    Easy Setup
-                  </h3>
-                  <p className="mt-1 text-gray-600">
-                    Follow our simple guide to obtain a free API key. Find it
-                    under the &apos;How to obtain free API key&apos; button in
-                    the extension menu.
-                  </p>
+                    View Setup Guide
+                    <svg
+                      className="ml-2 w-5 h-5"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  </Link>
                 </div>
               </div>
             </div>
           </div>
+        </div>
+      </section>
+      {/* Trust and Privacy Section */}
+      <section className="py-16 md:py-20 bg-gray-100">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">
+            Your Viewing, Your Privacy
+          </h2>
+          <div className="space-y-6 text-left max-w-2xl mx-auto text-gray-700">
+            <div className="flex items-start space-x-3">
+              <span className="text-green-500 text-2xl mt-1">✅</span>
+              <p>
+                <strong>Privacy First:</strong> We do not collect your personal
+                information or track your browsing history.
+              </p>
+            </div>
+            <div className="flex items-start space-x-3">
+              <span className="text-green-500 text-2xl mt-1">🔒</span>
+              <p>
+                <strong>Secure Analysis:</strong> The extension uses your
+                provided API key to securely analyze video content via the AI
+                model. Your data isn&apos;t stored by us.
+              </p>
+            </div>
+            <div className="flex items-start space-x-3">
+              <span className="text-green-500 text-2xl mt-1">⚙️</span>
+              <div>
+                <p>
+                  <strong>Minimal Permissions:</strong>
+                </p>
+                <ul className="list-disc list-inside ml-4 text-sm text-gray-600">
+                  <li>
+                    <em>YouTube Access:</em> Needed to add the button and
+                    sidebar to the YouTube page.
+                  </li>
+                  <li>
+                    <em>Clipboard Access (Optional):</em> To make pasting your
+                    API key easier during setup.
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div className="flex items-start space-x-3">
+              <span className="text-green-500 text-2xl mt-1">🔑</span>
+              <p>
+                <strong>Easy API Key Setup:</strong> A simple guide is available
+                within the extension settings to help you get a free API key
+                required for the AI features.
+              </p>
+            </div>
+          </div>
+          <p className="mt-8 text-sm text-gray-500">
+            For full details, please read our{" "}
+            <a
+              href={PRIVACY_POLICY_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:underline"
+            >
+              Privacy Policy
+            </a>
+            .
+          </p>
         </div>
       </section>
 
@@ -399,7 +484,7 @@ export default function Home() {
           </p>
           <div className="mt-8">
             <a
-              href="https://chrome.google.com/webstore"
+              href={CHROME_STORE_LINK}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center bg-white hover:bg-gray-100 text-red-600 px-6 py-3 rounded-md font-medium text-lg transition"
@@ -422,91 +507,33 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-gray-400 py-12">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row justify-between">
-            <div className="mb-8 md:mb-0">
-              <div className="flex items-center space-x-2">
-                <Image
-                  src="/images/icon.png"
-                  alt="YouTube AI Companion Logo"
-                  width={32}
-                  height={32}
-                  className="rounded-md"
-                />
-                <span className="font-bold text-xl text-white">
-                  YouTube AI Companion
-                </span>
-              </div>
-              <p className="mt-2 max-w-md">
-                Enhance YouTube videos with AI-powered analysis tools for
-                instant insights and better comprehension.
-              </p>
-            </div>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
-              <div>
-                <h3 className="text-white font-semibold mb-4">Features</h3>
-                <ul className="space-y-2">
-                  {features.map((feature) => (
-                    <li key={feature.id}>
-                      <a
-                        href={`#${feature.id}`}
-                        className="hover:text-white transition"
-                      >
-                        {feature.title}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div>
-                <h3 className="text-white font-semibold mb-4">Resources</h3>
-                <ul className="space-y-2">
-                  <li>
-                    <a href="#privacy" className="hover:text-white transition">
-                      Privacy Policy
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#faq" className="hover:text-white transition">
-                      FAQ
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#support" className="hover:text-white transition">
-                      Support
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div>
-                <h3 className="text-white font-semibold mb-4">Connect</h3>
-                <ul className="space-y-2">
-                  <li>
-                    <a href="#" className="hover:text-white transition">
-                      Contact Us
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" className="hover:text-white transition">
-                      Github
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" className="hover:text-white transition">
-                      Twitter
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
+      <footer className="bg-gray-900 text-gray-400 py-8 text-center">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mb-4">
+            <a
+              href={PRIVACY_POLICY_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white transition duration-300 mx-2"
+            >
+              Privacy Policy
+            </a>
+            <span className="mx-1">|</span>
+            <a
+              href={CHROME_STORE_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white transition duration-300 mx-2"
+            >
+              Chrome Web Store
+            </a>
           </div>
-          <div className="mt-12 pt-8 border-t border-gray-800 text-center">
-            <p>
-              &copy; {new Date().getFullYear()} YouTube AI Companion. All rights
-              reserved.
-            </p>
-          </div>
+          <p className="text-sm">
+            © {new Date().getFullYear()} YouTube AI Companion. All rights
+            reserved.
+          </p>
+          {/* Optional: Add your name or company */}
+          {/* <p className="text-xs mt-2">Developed by [Your Name/Company]</p> */}
         </div>
       </footer>
     </div>
