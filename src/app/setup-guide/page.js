@@ -219,7 +219,11 @@ export default function SetupGuide() {
           <div className="mt-4 mb-4">
             <div className="max-w-4xl mx-auto border border-gray-200 rounded-lg shadow-md overflow-hidden">
               <Image
-                src="/images/guide/pasteinfactcheckerextension.png"
+                src={
+                  process.env.NODE_ENV === "production"
+                    ? `/ytai/images/guide/pasteinfactcheckerextension.png`
+                    : `/images/guide/pasteinfactcheckerextension.png`
+                }
                 alt="API pasting screenshot"
                 width={400}
                 height={400}
