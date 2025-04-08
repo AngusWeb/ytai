@@ -5,6 +5,10 @@ import Image from "next/image";
 import { useState } from "react";
 
 import Link from "next/link";
+const imagePath = `images/icon.png`;
+console.log("Image path:", imagePath);
+console.log("Environment:", process.env.NODE_ENV);
+console.log("Base path:", isProd ? `/${repoName}` : "");
 // --- UPDATE THESE LINKS ---
 const CHROME_STORE_LINK =
   "https://chromewebstore.google.com/detail/youtube-factcheck/ajapllhjmmdfbilfbjpnnpnjhogajmio?hl=en"; // Replace with your actual Chrome Store URL
@@ -67,7 +71,7 @@ export default function Home() {
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <div className="flex items-center space-x-2">
             <Image
-              src="https://github.com/AngusWeb/ytai/images/icon.png"
+              src={imagePath}
               alt="YouTube AI Companion Logo"
               width={40}
               height={40}
