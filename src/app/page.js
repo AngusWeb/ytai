@@ -5,10 +5,7 @@ import Image from "next/image";
 import { useState } from "react";
 
 import Link from "next/link";
-const imagePath = `images/icon.png`;
-console.log("Image path:", imagePath);
-console.log("Environment:", process.env.NODE_ENV);
-console.log("Base path:", isProd ? `/${repoName}` : "");
+
 // --- UPDATE THESE LINKS ---
 const CHROME_STORE_LINK =
   "https://chromewebstore.google.com/detail/youtube-factcheck/ajapllhjmmdfbilfbjpnnpnjhogajmio?hl=en"; // Replace with your actual Chrome Store URL
@@ -71,7 +68,7 @@ export default function Home() {
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <div className="flex items-center space-x-2">
             <Image
-              src={imagePath}
+              src="/ytai/public/images/icon.png"
               alt="YouTube AI Companion Logo"
               width={40}
               height={40}
@@ -166,7 +163,7 @@ export default function Home() {
             <div className="md:w-1/2 mt-12 md:mt-0">
               <div className="relative rounded-lg shadow-xl overflow-hidden">
                 <Image
-                  src="https://github.com/AngusWeb/ytai/images/promo-large.png"
+                  src="/ytai/public/images/promo-large.png"
                   alt="YouTube AI Companion Demo"
                   width={700}
                   height={400}
@@ -322,7 +319,7 @@ export default function Home() {
           <div className="mt-16 max-w-4xl mx-auto">
             <div className="relative rounded-xl overflow-hidden shadow-2xl">
               <Image
-                src="https://github.com/AngusWeb/ytai/images/screenshot-annotated.png"
+                src="/ytai/public/images/screenshot-annotated.png"
                 alt="YouTube AI Companion Screenshot"
                 width={1280}
                 height={800}

@@ -19,7 +19,7 @@ export default function SetupGuide() {
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <Link href="/" className="flex items-center space-x-2">
             <Image
-              src="/images/icon.png"
+              src="/ytai/public/images/icon.png"
               alt="YouTube AI Companion Logo"
               width={40}
               height={40}
@@ -118,7 +118,7 @@ export default function SetupGuide() {
           <div className="mt-4 mb-4">
             <div className="max-w-4xl mx-auto border border-gray-200 rounded-lg shadow-md overflow-hidden">
               <Image
-                src="/images/guide/createapikeybutton.png"
+                src="/ytai/public/images/guide/createapikeybutton.png"
                 alt="Create API Key button screenshot"
                 width={1200}
                 height={800}
@@ -148,7 +148,7 @@ export default function SetupGuide() {
           <div className="mt-4 mb-4">
             <div className="max-w-4xl mx-auto border border-gray-200 rounded-lg shadow-md overflow-hidden">
               <Image
-                src="/images/guide/copyapikeybutton.png"
+                src="/ytai/public/images/guide/copyapikeybutton.png"
                 alt="Copy API Key button screenshot"
                 width={1200}
                 height={800}
@@ -185,7 +185,7 @@ export default function SetupGuide() {
           <div className="mt-4 mb-4">
             <div className="max-w-4xl mx-auto border border-gray-200 rounded-lg shadow-md overflow-hidden">
               <Image
-                src="/images/guide/extensionpinning.png"
+                src="/ytai/public/images/guide/extensionpinning.png"
                 alt="Extension pinning screenshot"
                 width={1200}
                 height={800}
@@ -219,11 +219,7 @@ export default function SetupGuide() {
           <div className="mt-4 mb-4">
             <div className="max-w-4xl mx-auto border border-gray-200 rounded-lg shadow-md overflow-hidden">
               <Image
-                src={
-                  process.env.NODE_ENV === "production"
-                    ? `/ytai/images/guide/pasteinfactcheckerextension.png`
-                    : `/images/guide/pasteinfactcheckerextension.png`
-                }
+                src="/ytai/public/images/guide/pasteinfactcheckerextension.png"
                 alt="API pasting screenshot"
                 width={400}
                 height={400}
@@ -275,7 +271,7 @@ export default function SetupGuide() {
           <div className="mt-4 mb-4">
             <div className="max-w-4xl mx-auto border border-gray-200 rounded-lg shadow-md overflow-hidden">
               <Image
-                src="/images/guide/extensionhowtouse.png"
+                src="/ytai/public/images/guide/extensionhowtouse.png"
                 alt="How to use screenshot"
                 width={1200}
                 height={800}
